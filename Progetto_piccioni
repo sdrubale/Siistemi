@@ -1,0 +1,37 @@
+
+// C++ code
+//
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(6, INPUT);
+  pinMode(5, OUTPUT);
+  digitalWrite(13,LOW);
+}
+bool state=false;
+int luce;
+
+void loop(){
+
+  	luce = analogRead(0);
+	Serial.print(digitalRead(6));
+    if(digitalRead(6) == HIGH){
+       if(!state){
+         state = true;
+   		 }
+      digitalWrite(13,HIGH);
+		if(luce>450)
+        {
+    		tone(5, millis()%1000+200);
+      		
+        }
+    }
+  	else{
+    if(state){
+      digitalWrite(13, LOW);
+      noTone(5);
+      state = false;
+    }
+  }
+  delay(500);
+}
